@@ -40,3 +40,7 @@ npm install
 
 # Set up environment variables
 touch .env.local
+
+
+#NOTE:
+Please If You click on the confirmation email, if it load a localhost ingore it then move to the normal page to sig up again
