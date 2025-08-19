@@ -8,13 +8,20 @@ import { RecentExpenses } from './components/Dashboard/RecentExpenses'
 import { ExpenseForm } from './components/AddExpense/ExpenseForm'
 import { ExpenseCharts } from './components/Analytics/ExpenseCharts'
 import { SettingsPanel } from './components/Settings/SettingsPanel'
-import { useExpenses } from './hooks/useExpenses'
 import { exportToCSV } from './utils/csvExport'
 
 function MainApp() {
-  const { expenses, addExpense, deleteExpense } = useExpenses()
+  const [expenses, setExpenses] = useState([])
   const [currentView, setCurrentView] = useState('dashboard')
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const addExpense = (expense) => {
+    setExpenses([...expenses, expense])
+  }
+
+  const deleteExpense = (id) => {
+    setExpenses(expenses.filter((e) => e.id !== id))
+  }
 
   const handleExportCSV = () => {
     exportToCSV(expenses, `expenses-${new Date().toISOString().split('T')[0]}.csv`)
@@ -97,3 +104,4 @@ function App() {
 }
 
 export default App
+
